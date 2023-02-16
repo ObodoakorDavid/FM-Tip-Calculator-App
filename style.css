@@ -1,0 +1,175 @@
+/** @format */
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap");
+
+:root {
+  --very-dark-cyan: hsl(183, 100%, 15%);
+  --dark-grayish-cyan: hsl(186, 14%, 43%);
+  --light-grayish-cyan: hsl(185, 41%, 84%);
+  --very-light-grayish-cyan: hsl(189, 41%, 97%);
+  --light-green: hsl(172, 67%, 45%);
+  --white: hsl(0, 0%, 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Space Mono", monospace;
+  background-color: var(--light-grayish-cyan);
+}
+
+/* - Very dark cyan: hsl(183, 100%, 15%)
+- Dark grayish cyan: hsl(186, 14%, 43%)
+- Grayish cyan: hsl(184, 14%, 56%)
+- Light grayish cyan: hsl(185, 41%, 84%)
+- Very light grayish cyan: hsl(189, 41%, 97%)
+- White: hsl(0, 0%, 100%) */
+
+.container small {
+  color: red;
+}
+
+/* =================== Section1 Starts Here =============  */
+
+h1 {
+  text-align: center;
+  padding: 50px;
+}
+
+.container {
+  padding: 20px;
+  background-color: var(--white);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.section1 {
+  color: var(--dark-grayish-cyan);
+  padding: 20px 0;
+}
+
+.section1 input {
+  padding: 10px 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--very-light-grayish-cyan);
+  font-weight: bolder;
+  /* text-align: right; */
+}
+
+/* =================== Section1 Ends Here =============  */
+/* =================== Section2 Starts Here =============  */
+
+.section2 h3 {
+  padding-bottom: 10px;
+}
+.section1 h3 {
+  padding-bottom: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.grid-container button,
+.grid-container input {
+  height: 36px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--very-dark-cyan);
+  color: white;
+}
+
+.grid-container button:focus {
+  background-color: var(--light-grayish-cyan);
+}
+
+.grid-container input:focus {
+  border: 2px solid var(--very-dark-cyan);
+}
+
+.grid-container input {
+  text-align: center;
+  background-color: hsl(185, 41%, 84%);
+  color: hsl(183, 100%, 15%);
+}
+
+/* =================== Section2 Ends Here =============  */
+
+/* =================== Section3 Starts Here =============  */
+
+.section3 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.section3 input {
+  width: 100%;
+  height: 36px;
+  border: none;
+  background-color: hsl(185, 41%, 84%);
+  border-radius: 8px;
+  margin-top: 10px;
+}
+/* =================== Section3 ends Here =============  */
+
+/* =================== Section4 Starts Here =============  */
+.section4 {
+  background-color: hsl(183, 100%, 15%);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 12px;
+}
+
+.section4 > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section4 > div > p {
+  font-size: 24px;
+  color: hsl(185, 41%, 84%);
+}
+
+.section4 div div p:nth-of-type(1) {
+  color: hsl(185, 41%, 84%);
+}
+.section4 div div small {
+  color: hsl(186, 14%, 43%);
+}
+
+.section4 button {
+  height: 36px;
+  border: none;
+  background-color: hsl(172, 67%, 45%);
+  border-radius: 8px;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-size: 18px;
+  color: hsl(183, 100%, 15%);
+}
+/* =================== Section4 ends Here =============  */
+
+@media (min-width: 608px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    border-radius: 30px;
+    padding: 40px;
+  }
+
+  .section4 button {
+    margin-top: 50%;
+  }
+}
