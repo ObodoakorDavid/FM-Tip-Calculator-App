@@ -13,21 +13,66 @@ let percent = null;
 let bill = null;
 let numberOfPeopleInput = null;
 let tip = null;
+let tipAmountValue = 0;
+let totalAmountValue = 0;
 
 billError.style.display = "none";
 numberOfPeopleError.style.display = "none";
 
 function calcPercent() {
   percent = Number(numberOfPeopleInput);
-  let result = (bill * percent) / 100;
+  let tempResult = (bill * percent) / 100;
+  let tipPerPerson = tempResult / numberOfPeopleInput;
+  tipAmountValue = tipPerPerson;
+  let totalResult = tipPerPerson * numberOfPeopleInput;
+  totalAmountValue = totalResult;
+
   console.log(result);
-  // console.log(typeof numberOfPeopleInput);
+  console.log("hELLO");
+  console.log(numberOfPeopleInput);
+  console.log(percent);
+  console.log(bill);
 }
+
+let checkErrorState = () => {
+  billError.style.display = "none";
+  numberOfPeopleError.style.display = "none";
+
+  if (bill == "0" || numberOfPeopleInput == "0") {
+    if (bill == "0" && numberOfPeopleInput == "0") {
+      billError.textContent = "Can't be zero";
+      billError.style.display = "block";
+      numberOfPeopleError.textContent = "Can't be zero";
+      numberOfPeopleError.style.display = "block";
+    } else if (numberOfPeopleInput == "0") {
+      numberOfPeopleError.textContent = "Can't be zero";
+      numberOfPeopleError.style.display = "block";
+    } else if (bill == "0") {
+      billError.textContent = "Can't be zero";
+      billError.style.display = "block";
+    }
+  } else if (numberOfPeopleInput == null || bill == null) {
+    if (bill == null && numberOfPeopleInput == null) {
+      billError.textContent = "Required!";
+      billError.style.display = "block";
+      numberOfPeopleError.textContent = "Required!";
+      numberOfPeopleError.style.display = "block";
+    } else if (numberOfPeopleInput == null) {
+      numberOfPeopleError.textContent = "Required!";
+      numberOfPeopleError.style.display = "block";
+    } else if (bill == null) {
+      billError.textContent = "Required!";
+      billError.style.display = "block";
+    }
+  } else {
+    calcPercent();
+  }
+};
 
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    console.log(e.target.value);
     let input = e.target.value;
+    percent = e.target.value;
     console.log(input);
   });
 });
@@ -38,26 +83,12 @@ inputPercent.addEventListener("change", (e) => {
 
 billInput.addEventListener("change", (e) => {
   bill = e.target.value;
-  numberOfPeopleError.style.display = "none";
-  billError.style.display = "none";
-  if (numberOfPeopleInput == null || numberOfPeopleInput == "") {
-    numberOfPeopleError.style.display = "block";
-  } else {
-    numberOfPeopleError.style.display = "none";
-    calcPercent();
-  }
+  checkErrorState();
 });
 
 numberOfPeopleElement.addEventListener("change", (e) => {
-  billError.style.display = "none";
-  numberOfPeopleError.style.display = "none";
   numberOfPeopleInput = e.target.value;
-  if (bill == null || bill == "") {
-    billError.style.display = "block";
-  } else {
-    billError.style.display = "none";
-    calcPercent();
-  }
+  checkErrorState();
 });
 
 form.addEventListener("submit", (e) => {
