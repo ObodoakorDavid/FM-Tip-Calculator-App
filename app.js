@@ -1,7 +1,8 @@
 /** @format */
 
-let billInput = document.querySelector(".bill");
-// let buttons = document.querySelectorAll("button");
+// Elements
+
+let billElement = document.querySelector(".bill");
 let buttons = document.querySelectorAll(".grid-container button");
 let inputPercent = document.querySelector(".grid-container input");
 let billError = document.querySelector(".section1 > small");
@@ -10,38 +11,55 @@ let tipPersonElement = document.querySelector(".tip-person");
 let tipTotalElement = document.querySelector(".tip-total");
 let numberOfPeopleElement = document.querySelector(".nop");
 let form = document.querySelector("form");
+let reset = document.querySelector(".reset");
+
+// Variables
+
 let percent = null;
-let bill = null;
+let billInput = null;
 let numberOfPeopleInput = null;
 let tip = null;
-// let tipAmountValue = 0;
-// let totalAmountValue = 0;
 
 billError.style.display = "none";
 numberOfPeopleError.style.display = "none";
 
 function calcPercent() {
-  let tempResult = (bill * percent) / 100;
+  let tempResult = (billInput * percent) / 100;
   let tipPerPerson = tempResult / numberOfPeopleInput;
-  // tipAmountValue = tipPerPerson;
   let totalResult = tipPerPerson * numberOfPeopleInput;
-  // totalAmountValue = totalResult;
+  let tipPerPersonString = String(tipPerPerson);
 
-  tipPersonElement.textContent = `$${tipPerPerson.toString().slice(0, 3)}`;
-  tipTotalElement.textContent = `$${totalResult}`;
-
-  console.log(numberOfPeopleInput);
-  console.log(percent);
-  console.log(bill);
+  console.log(tipPerPerson);
   console.log(totalResult);
+
+  if (tipPerPersonString.includes(".")) {
+    let tempIndex = tipPerPersonString.indexOf(".");
+
+    if (
+      tipPerPersonString.charAt(tempIndex) + 1 == 0 &&
+      tipPerPersonString.charAt(tempIndex) + 2 == 0
+    ) {
+      tipPersonElement.textContent = `$${tipPerPersonString.slice(
+        0,
+        tipPerPersonString.indexOf(".")
+      )}`;
+      tipTotalElement.textContent = `$${totalResult}`;
+    } else {
+      tipPersonElement.textContent = `$${tipPerPersonString.slice(
+        0,
+        tipPerPersonString.indexOf(".") + 3
+      )}`;
+      tipTotalElement.textContent = `$${totalResult}`;
+    }
+  } else {
+    tipPersonElement.textContent = `$${tipPerPersonString}`;
+    tipTotalElement.textContent = `$${totalResult}`;
+  }
 }
 
 let checkErrorState = () => {
-  billError.style.display = "none";
-  numberOfPeopleError.style.display = "none";
-
-  if (bill == "0" || numberOfPeopleInput == "0") {
-    if (bill == "0" && numberOfPeopleInput == "0") {
+  if (billInput == "0" || numberOfPeopleInput == "0") {
+    if (billInput == "0" && numberOfPeopleInput == "0") {
       billError.textContent = "Can't be zero";
       billError.style.display = "block";
       numberOfPeopleError.textContent = "Can't be zero";
@@ -49,12 +67,12 @@ let checkErrorState = () => {
     } else if (numberOfPeopleInput == "0") {
       numberOfPeopleError.textContent = "Can't be zero";
       numberOfPeopleError.style.display = "block";
-    } else if (bill == "0") {
+    } else if (billInput == "0") {
       billError.textContent = "Can't be zero";
       billError.style.display = "block";
     }
-  } else if (numberOfPeopleInput == null || bill == null) {
-    if (bill == null && numberOfPeopleInput == null) {
+  } else if (numberOfPeopleInput == null || billInput == null) {
+    if (billInput == null && numberOfPeopleInput == null) {
       billError.textContent = "Required!";
       billError.style.display = "block";
       numberOfPeopleError.textContent = "Required!";
@@ -62,12 +80,12 @@ let checkErrorState = () => {
     } else if (numberOfPeopleInput == null) {
       numberOfPeopleError.textContent = "Required!";
       numberOfPeopleError.style.display = "block";
-    } else if (bill == null) {
+    } else if (billInput == null) {
       billError.textContent = "Required!";
       billError.style.display = "block";
     }
-  } else if (numberOfPeopleInput == "" || bill == "") {
-    if (bill == "" && numberOfPeopleInput == "") {
+  } else if (numberOfPeopleInput == "" || billInput == "") {
+    if (billInput == "" && numberOfPeopleInput == "") {
       billError.textContent = "Required!";
       billError.style.display = "block";
       numberOfPeopleError.textContent = "Required!";
@@ -75,7 +93,7 @@ let checkErrorState = () => {
     } else if (numberOfPeopleInput == "") {
       numberOfPeopleError.textContent = "Required!";
       numberOfPeopleError.style.display = "block";
-    } else if (bill == "") {
+    } else if (billInput == "") {
       billError.textContent = "Required!";
       billError.style.display = "block";
     }
@@ -86,12 +104,12 @@ let checkErrorState = () => {
 
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    buttons.forEach(btn => btn.classList.remove('active'))
+    buttons.forEach((btn) => btn.classList.remove("active"));
     let input = e.target.value;
     percent = e.target.value;
     console.log(input);
     checkErrorState();
-    button.classList.add('active')
+    button.classList.add("active");
   });
   button.addEventListener("focusout", () => {
     checkErrorState();
@@ -108,8 +126,8 @@ inputPercent.addEventListener("focusout", (e) => {
   checkErrorState();
 });
 
-billInput.addEventListener("change", (e) => {
-  bill = e.target.value;
+billElement.addEventListener("change", (e) => {
+  billInput = e.target.value;
   checkErrorState();
 });
 
@@ -120,7 +138,7 @@ numberOfPeopleElement.addEventListener("change", (e) => {
 
 // Fous State
 
-billInput.addEventListener("focusout", (e) => {
+billElement.addEventListener("focusout", (e) => {
   checkErrorState();
 });
 
@@ -128,12 +146,26 @@ numberOfPeopleElement.addEventListener("focusout", (e) => {
   checkErrorState();
 });
 
-billInput.addEventListener("focusin", (e) => {
+billElement.addEventListener("focusin", (e) => {
   billError.style.display = "none";
 });
 
 numberOfPeopleElement.addEventListener("focusin", (e) => {
   numberOfPeopleError.style.display = "none";
+});
+
+// reset
+
+reset.addEventListener("click", () => {
+  percent = null;
+  billInput = null;
+  numberOfPeopleInput = null;
+  tip = null;
+  tipPersonElement.textContent = `$${0}`;
+  tipTotalElement.textContent = `$${0}`;
+  buttons.forEach((btn) => btn.classList.remove("active"));
+  billElement.value = "";
+  numberOfPeopleElement.value = "";
 });
 
 form.addEventListener("submit", (e) => {

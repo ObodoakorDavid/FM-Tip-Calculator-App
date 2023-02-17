@@ -57,7 +57,7 @@ h1 {
   width: 100%;
   border-radius: 5px;
   border: none;
-  background-color: var(--very-light-grayish-cyan);
+  background-color: var(--light-grayish-cyan);
   font-weight: bolder;
   /* text-align: right; */
 }
@@ -102,8 +102,8 @@ h1 {
 
 .grid-container input {
   text-align: center;
-  background-color: hsl(185, 41%, 84%);
-  color: hsl(183, 100%, 15%);
+  background-color: var(--light-grayish-cyan);
+  color: var(--very-dark-cyan);
 }
 
 /* =================== Section2 Ends Here =============  */
@@ -119,15 +119,17 @@ h1 {
   width: 100%;
   height: 36px;
   border: none;
-  background-color: hsl(185, 41%, 84%);
+  background-color: var(--light-grayish-cyan);
   border-radius: 8px;
   margin-top: 10px;
+  padding: 0px 10px;
 }
+
 /* =================== Section3 ends Here =============  */
 
 /* =================== Section4 Starts Here =============  */
 .section4 {
-  background-color: hsl(183, 100%, 15%);
+  background-color: var(--very-dark-cyan);
   padding: 30px 20px;
   display: flex;
   flex-direction: column;
@@ -143,14 +145,14 @@ h1 {
 
 .section4 > div > p {
   font-size: 24px;
-  color: hsl(185, 41%, 84%);
+  color: var(--light-grayish-cyan);
 }
 
 .section4 div div p:nth-of-type(1) {
-  color: hsl(185, 41%, 84%);
+  color: var(--light-grayish-cyan);
 }
 .section4 div div small {
-  color: hsl(186, 14%, 43%);
+  color: var(--dark-grayish-cyan);
 }
 
 .section4 button {
@@ -161,7 +163,11 @@ h1 {
   font-family: "Space Mono", monospace;
   font-weight: 700;
   font-size: 18px;
-  color: hsl(183, 100%, 15%);
+  color: var(--very-dark-cyan);
+}
+
+.section4 button:hover {
+  background-color: var(--light-grayish-cyan);
 }
 /* =================== Section4 ends Here =============  */
 
