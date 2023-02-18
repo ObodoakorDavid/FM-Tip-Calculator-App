@@ -166,6 +166,8 @@ reset.addEventListener("click", () => {
   buttons.forEach((btn) => btn.classList.remove("active"));
   billElement.value = "";
   numberOfPeopleElement.value = "";
+  billError.style.display = "none";
+  numberOfPeopleError.style.display = "none";
 });
 
 form.addEventListener("submit", (e) => {
